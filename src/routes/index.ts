@@ -5,7 +5,8 @@ import fishersRoute from "./apis/fishers";
 const routes =  express.Router();
 
 const logger = (req : express.Request, res: express.Response, next: Function): void => {
-    console.log('the middleware is working');
+    const route = (`${req.url} was just visited.`);
+    console.log(route);
     next();
 }
  
@@ -13,9 +14,9 @@ routes.get('/', logger, (req: express.Request, res: express.Response) => {
     res.send('Saying hi from the base route');
 })
 
-routes.use('/bakers', logger, bakersRoute);
+routes.use('/', logger, bakersRoute);
 
-routes.use('/fishers', logger, fishersRoute);
+routes.use('/', logger, fishersRoute);
 
 
 
